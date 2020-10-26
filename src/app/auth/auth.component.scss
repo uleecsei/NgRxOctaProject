@@ -1,0 +1,21 @@
+@import "variables";
+
+.auth-wrapper {
+  background-color: $aliceBlue;
+  height: 100vh;
+}
+
+.auth-header{
+  display: flex;
+  justify-content: flex-end;
+  background: $cornflowerBlue;
+  height: 70px;
+  padding-right: 40px;
+  align-items: center;
+
+  &__button{
+    background: $aliceBlue;
+    color: cornflowerblue;
+    margin-right: 20px;
+  }
+}
