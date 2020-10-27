@@ -1,16 +1,16 @@
-// import { createFeatureSelector, createSelector } from '@ngrx/store';
-//
-// import { IAppState } from '../../interfaces/app-state.interface';
-//
-// import { IAuthState, authStateKey } from './auth.reducer';
-//
-// export const selectAuthState = createFeatureSelector<IAppState, IAuthState>(authStateKey);
-//
-// export const selectUser = createSelector(
-//   selectAuthState,
-//   state => state.user,
-// );
-//
+import { createFeatureSelector, createSelector } from '@ngrx/store';
+
+import { IAppState } from '../../interfaces/app-state.interface';
+
+import { IAuthState, authStateKey } from './auth.reducer';
+
+export const selectAuthState = (state: IAuthState) => state;
+
+export const selectUser = createSelector(
+  selectAuthState,
+  state => state.user,
+);
+
 // export const selectIsAuthorized = createSelector(
 //   selectUser,
 //   Boolean,
@@ -36,10 +36,10 @@
 //   state => state.isResetPasswordTriggered,
 // );
 //
-// export const selectRedirectAfterSignIn = createSelector(
-//   selectAuthState,
-//   state => state.redirectAfterSignIn,
-// );
+export const selectRedirectAfterSignIn = createSelector(
+  selectAuthState,
+  state => state.redirectAfterSignIn,
+);
 //
 // export const selectIsTriggeringPasswordReset = createSelector(
 //   selectAuthState,

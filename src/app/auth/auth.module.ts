@@ -6,8 +6,9 @@ import { AuthRoutingModule } from './auth-routing.module';
 import { ResetPasswordFormComponent } from './reset-password-form/reset-password-form.component';
 import { UpdatePasswordFormComponent } from './update-password-form/update-password-form.component';
 import { AuthComponent } from './auth.component';
-import { MaterialModule } from '../material/material/material.module';
 import { ReactiveFormsModule } from '@angular/forms';
+import { MatButtonModule } from '@angular/material/button';
+import { MatFormFieldModule, MatInputModule } from '@angular/material';
 
 
 
@@ -16,7 +17,9 @@ import { ReactiveFormsModule } from '@angular/forms';
   imports: [
     CommonModule,
     AuthRoutingModule,
-    MaterialModule,
+    MatButtonModule,
+    MatFormFieldModule,
+    MatInputModule,
     ReactiveFormsModule
   ]
 })

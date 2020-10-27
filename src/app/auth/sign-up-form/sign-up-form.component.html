@@ -16,6 +16,10 @@
         type="email"
         formControlName="email"
         matInput>
+      <mat-error *ngIf="!email.valid">
+        <span *ngIf="email.errors['email']">Incorrect email</span>
+        <span *ngIf="email.errors['required']">Email is required</span>
+      </mat-error>
     </mat-form-field>
     <mat-form-field appearance="outline">
       <input
@@ -24,6 +28,10 @@
         type="password"
         formControlName="password"
         matInput>
+      <mat-error *ngIf="!password.valid">
+        <span *ngIf="password.errors['min']">Password should contain more than 3 symbols</span>
+        <span *ngIf="password.errors['required']">Password is required</span>
+      </mat-error>
     </mat-form-field>
     <button mat-button type="submit" class="form__submit">create an account</button>
     <a routerLink="/login" class="form__redirect">Already have an account? Sign In</a>

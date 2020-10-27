@@ -1,14 +1,22 @@
 import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
 
-  constructor() { }
+  private url = 'https://dev-6767126.okta.com';
+  private options = {
+    multiOptionalFactorEnroll: true,
+    warnBeforePasswordExpired: true
+  };
 
-  login(options: {email: string, password: string}) {
-    console.log(options);
+  constructor(private http: HttpClient) { }
+
+  login(credentials: {username: string, password: string}): Observable<any>{
+   return  this.http.post(`${(this.url)}/api/v1/authn`, {...credentials, options: this.options});
   }
   register(options: {name: string, email: string, password: string}) {
     console.log(options);
