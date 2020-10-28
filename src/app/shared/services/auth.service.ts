@@ -15,9 +15,11 @@ export class AuthService {
 
   constructor(private http: HttpClient) { }
 
-  login(credentials: {username: string, password: string}): Observable<any>{
+  // TODO add model
+  login(credentials: {username: string, password: string}): Observable<any> {
    return  this.http.post(`${(this.url)}/api/v1/authn`, {...credentials, options: this.options});
   }
+
   register(options: {name: string, email: string, password: string}) {
     console.log(options);
   }

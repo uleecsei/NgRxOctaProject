@@ -39,46 +39,8 @@ const reducer = createReducer<IAuthState>(
     redirectAfterSignIn: null,
   })),
 
-  on(authActions.signInFailure, (state, { newPasswordRequired }) => ({
+  on(authActions.signInFailure, (state) => ({
     ...state,
-    newPasswordRequired,
     authorization: false,
   })),
-
-  // on(authActions.signOut, state => initialState),
-  //
-  // on(authActions.loadUserSuccess, (state) => ({
-  //   ...state
-  // })),
-  //
-  // on(authActions.completeNewPasswordChallenge, state => ({
-  //   ...state,
-  //   authorization: true,
-  // })),
-  //
-  // on(authActions.completeNewPasswordChallengeFailure, state => ({
-  //   ...state,
-  //   authorization: false,
-  // })),
-  //
-  // on(authActions.sendResetPasswordCode, state => ({
-  //   ...state,
-  //   isTriggeringPasswordReset: true,
-  // })),
-  //
-  // on(authActions.sendResetPasswordCodeSuccess, state => ({
-  //   ...state,
-  //   isResetPasswordTriggered: true,
-  //   isTriggeringPasswordReset: false,
-  // })),
-  //
-  // on(authActions.sendResetPasswordCodeFailure, state => ({
-  //   ...state,
-  //   isTriggeringPasswordReset: false,
-  // })),
-  //
-  // on(authActions.saveRedirectAfterSignIn, (state, { link }) => ({
-  //   ...state,
-  //   redirectAfterSignIn: link,
-  // })),
 );
