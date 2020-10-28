@@ -1,15 +1,17 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { selectUser } from '../shared/store/auth/auth.selectors';
+import { Store } from '@ngrx/store';
+import { IAuthState } from '../shared/store/auth/auth.reducer';
 
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
-  styleUrls: ['./home.component.scss']
+  styleUrls: ['./home.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class HomeComponent implements OnInit {
+export class HomeComponent {
+  user$ = this.store.select(selectUser);
 
-  constructor() { }
-
-  ngOnInit(): void {
-  }
+  constructor(private store: Store<IAuthState>) {}
 
 }

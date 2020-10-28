@@ -1,5 +1,6 @@
 import { Injectable, Injector } from '@angular/core';
 import { EMPTY, Observable } from 'rxjs';
+
 import { IOktaUserSession } from '../../shared/models/okta-user-session.interface';
 import { ApiService } from '../../shared/services/api.service';
 

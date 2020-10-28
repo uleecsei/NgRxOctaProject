@@ -1,1 +1,4 @@
-<p>Successful Login</p>
+<div class="wrapper" *ngIf="user$ | async as user">
+  <pre>{{ user | json}}</pre>
+</div>
+

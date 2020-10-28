@@ -1,7 +1,8 @@
 import { createAction, props } from '@ngrx/store';
+import { IUserData } from '../../models/user-data.interface';
 
 export const signIn = createAction('[Auth] Sign In', props<{ username: string, password: string }>());
-export const signInSuccess = createAction('[Auth] Sign In Success');
+export const signInSuccess = createAction('[Auth] Sign In Success', props<{user: IUserData}>());
 export const signInFailure = createAction('[Auth] Sign In Failure');
 
 export const signUp = createAction('[Auth Form] Sign Up', props<{ username: string, password: string, name: string }>());

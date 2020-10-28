@@ -31,7 +31,5 @@ export class SignUpFormComponent {
     if (this.form.invalid) {
       return;
     }
-    // this.store.dispatch(sign(this.form.getRawValue()));
   }
-
 }

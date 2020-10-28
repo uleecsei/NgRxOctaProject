@@ -7,7 +7,6 @@ import { catchError, map, switchMap } from 'rxjs/operators';
 import { of } from 'rxjs';
 
 import * as authActions from './auth.actions';
-import { IAppState } from '../../interfaces/app-state.interface';
 import { AuthService } from '../../../core/services/auth.service';
 
 @Injectable()
@@ -23,7 +22,7 @@ export class AuthEffects {
             this.router.navigate(['/home']);
           });
 
-          return authActions.signInSuccess();
+          return authActions.signInSuccess(userSession._embedded);
         }),
         catchError((error) => {
           this.toastr.error('Oops, login failed');
@@ -64,7 +63,7 @@ export class AuthEffects {
     private authService: AuthService,
     private toastr: ToastrService,
     private router: Router,
-    private store: Store<IAppState>,
+    private store: Store,
     private ngZone: NgZone
   ) {}
 }

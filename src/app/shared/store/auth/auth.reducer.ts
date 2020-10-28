@@ -1,24 +1,16 @@
 import { Action, createReducer, on } from '@ngrx/store';
+
 import * as authActions from './auth.actions';
-
-export const authStateKey = 'auth';
-
-
-export interface IUser {
-  email: string;
-  password: string;
-}
+import { IUserData } from '../../models/user-data.interface';
 
 export interface IAuthState {
   authorization: boolean;
-  user: IUser;
-  redirectAfterSignIn: string;
+  userData: IUserData;
 }
 
 export const initialState: IAuthState = {
   authorization: false,
-  user: null,
-  redirectAfterSignIn: null,
+  userData: null,
 };
 
 export function authReducer(state: IAuthState | undefined, action: Action): IAuthState {
@@ -33,11 +25,12 @@ const reducer = createReducer<IAuthState>(
     authorization: true,
   })),
 
-  on(authActions.signInSuccess, state => ({
-    ...state,
-    authorization: false,
-    redirectAfterSignIn: null,
-  })),
+  on(authActions.signInSuccess, (state, { user }) => ({
+      ...state,
+      userData: user,
+      authorization: false,
+    })
+  ),
 
   on(authActions.signInFailure, (state) => ({
     ...state,
