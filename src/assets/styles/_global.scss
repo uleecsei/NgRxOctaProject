@@ -20,3 +20,9 @@
     text-transform: uppercase;
   }
 }
+
+.mobile-container {
+  @media (max-width: 600px) {
+    width: 100%;
+  }
+}

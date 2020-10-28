@@ -1,29 +1,37 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { AbstractControl, FormControl, FormGroup, Validators } from '@angular/forms';
-import { AuthService } from '../../shared/services/auth.service';
+import { Store } from '@ngrx/store';
+
+import { IAuthState } from '../../shared/store/auth/auth.reducer';
 
 @Component({
   selector: 'app-sign-up-form',
   templateUrl: './sign-up-form.component.html',
-  styleUrls: ['./sign-up-form.component.scss']
+  styleUrls: ['./sign-up-form.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class SignUpFormComponent implements OnInit {
+export class SignUpFormComponent {
   form: FormGroup = new FormGroup({
     name: new FormControl(),
     email: new FormControl(null, [Validators.email, Validators.required]),
     password: new FormControl(null, [Validators.min(4), Validators.required])
   });
 
-  constructor(authService: AuthService) { }
+  constructor(private store: Store<IAuthState>) { }
 
   get email(): AbstractControl {
-    return this.form.get('email');
+    return this.form.controls.email;
   }
 
   get password(): AbstractControl {
-    return this.form.get('password');
+    return this.form.controls.password;
   }
 
-  ngOnInit() {
+  signUp(): void {
+    if (this.form.invalid) {
+      return;
+    }
+    // this.store.dispatch(sign(this.form.getRawValue()));
   }
+
 }

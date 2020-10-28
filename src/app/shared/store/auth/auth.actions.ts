@@ -4,7 +4,14 @@ export const signIn = createAction('[Auth] Sign In', props<{ username: string, p
 export const signInSuccess = createAction('[Auth] Sign In Success');
 export const signInFailure = createAction('[Auth] Sign In Failure');
 
-// export const signUp = createAction('[Auth Form] Sign Up', props<{ email: string, password: string, name: string }>());
-// export const signUpSuccess = createAction('[Auth API] Sign Up Success');
-// export const signUpFailure = createAction('[Auth API] Sign Up Failure');
+export const signUp = createAction('[Auth Form] Sign Up', props<{ username: string, password: string, name: string }>());
+export const signUpSuccess = createAction('[Auth API] Sign Up Success');
+export const signUpFailure = createAction('[Auth API] Sign Up Failure');
 
+export const resetPassword = createAction('[Auth] Send Reset Password Code', props<{ username: string }>());
+export const resetPasswordSuccess = createAction('[Auth API] Send Reset Password Code Success');
+export const resetPasswordFailure = createAction('[Auth API] Send Reset Password Code Failure');
+
+export const updatePassword = createAction('[Auth] Send Reset Password Code', props<{ password: string }>());
+export const updatePasswordSuccess = createAction('[Auth API] Send Reset Password Code Success');
+export const updatePasswordFailure = createAction('[Auth API] Send Reset Password Code Failure');

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { AbstractControl, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Store } from '@ngrx/store';
 
@@ -8,7 +8,8 @@ import { IAuthState } from '../../shared/store/auth/auth.reducer';
 @Component({
   selector: 'app-sign-in-form',
   templateUrl: './sign-in-form.component.html',
-  styleUrls: ['./sign-in-form.component.scss']
+  styleUrls: ['./sign-in-form.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class SignInFormComponent {
   form: FormGroup = new FormGroup({

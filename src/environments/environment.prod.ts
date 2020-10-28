@@ -1,3 +1,4 @@
 export const environment = {
-  production: true
+  production: true,
+  oktaAPI: 'https://dev-6767126.okta.com'
 };

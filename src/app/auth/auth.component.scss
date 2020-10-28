@@ -13,6 +13,11 @@
   padding-right: 40px;
   align-items: center;
 
+  @media (max-width: 600px) {
+    padding: 0;
+    justify-content: center;
+  }
+
   &__button{
     background: $aliceBlue;
     color: cornflowerblue;

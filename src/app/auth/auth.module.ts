@@ -27,6 +27,6 @@ import { AuthComponent } from './auth.component';
     MatFormFieldModule,
     MatInputModule,
     ReactiveFormsModule,
-  ]
+  ],
 })
 export class AuthModule { }

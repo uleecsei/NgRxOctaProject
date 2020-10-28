@@ -1,5 +1,5 @@
 import { Actions, createEffect, ofType } from '@ngrx/effects';
-import { Injectable } from '@angular/core';
+import { Injectable, NgZone } from '@angular/core';
 import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { ToastrService } from 'ngx-toastr';
@@ -8,7 +8,7 @@ import { of } from 'rxjs';
 
 import * as authActions from './auth.actions';
 import { IAppState } from '../../interfaces/app-state.interface';
-import { AuthService } from '../../services/auth.service';
+import { AuthService } from '../../../core/services/auth.service';
 
 @Injectable()
 export class AuthEffects {
@@ -17,11 +17,44 @@ export class AuthEffects {
     ofType(authActions.signIn),
     switchMap(({ username, password }) => {
       return this.authService.login({ username, password }).pipe(
-        map(() => authActions.signInSuccess()),
+        map((userSession) => {
+          this.ngZone.run(() => {
+            this.authService.setToken(userSession.sessionToken);
+            this.router.navigate(['/home']);
+          });
+
+          return authActions.signInSuccess();
+        }),
         catchError((error) => {
           this.toastr.error('Oops, login failed');
           return of(authActions.signInFailure());
         }),
+      );
+    }),
+  ));
+
+  signUp$ = createEffect(() => this.actions$.pipe(
+    ofType(authActions.signUp),
+    switchMap(({name, username, password}) => {
+      return this.authService.register({name, username, password}).pipe(
+        map(() => authActions.signUpSuccess()),
+        catchError((error) => {
+          this.toastr.error('Oops, register failed');
+          return of(authActions.signUpFailure());
+        })
+      );
+    }),
+  ));
+
+  resetPassword$ = createEffect(() => this.actions$.pipe(
+    ofType(authActions.resetPassword),
+    switchMap(({username}) => {
+      return this.authService.resetPassword({username}).pipe(
+        map(() => authActions.resetPasswordSuccess()),
+        catchError((error) => {
+          this.toastr.error('Oops, reset password failed');
+          return of(authActions.resetPasswordFailure());
+        })
       );
     }),
   ));
@@ -32,5 +65,6 @@ export class AuthEffects {
     private toastr: ToastrService,
     private router: Router,
     private store: Store<IAppState>,
+    private ngZone: NgZone
   ) {}
 }
